@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YouTube Multi-View</title>
+  <link rel="icon" type="image/x-icon" href="IMG-1.ico" />
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .video-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      width: 100vw;
+      height: 100vh;
+      gap: 1px;
+    }
+    .video-wrapper {
+      position: relative;
+      text-align: center;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .number-label {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+    @media screen and (max-width: 768px) {
+      .number-label {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container" id="videoContainer"></div>
+
+  <script>
+    const useIndexes = [2, 3];
+
+    fetch("videos.json")
+      .then(response => response.json())
+      .then(videos => {
+        const container = document.getElementById("videoContainer");
+        useIndexes.forEach(i => {
+          const video = videos[i];
+          const wrapper = document.createElement("div");
+          wrapper.className = "video-wrapper";
+
+          const iframe = document.createElement("iframe");
+          iframe.src = video.src;
+          iframe.allow = "autoplay";
+
+          const label = document.createElement("div");
+          label.className = "number-label";
+          label.textContent = video.label;
+
+          wrapper.appendChild(iframe);
+          wrapper.appendChild(label);
+          container.appendChild(wrapper);
+        });
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Multi-View</title>
+    <link rel="icon" type="image/x-icon" href="IMG-1.ico">
+    <style>
+        body {
+            margin: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .video-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 横2列 */
+            grid-template-rows: repeat(2, 1fr); /* 縦2列 */
+            width: 100vw;
+            height: 100vh;
+            gap: 1px;
+        }
+        .video-wrapper {
+            position: relative;
+            text-align: center;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .number-label {
+            position: absolute;
+            bottom: 10px; /* 位置を少し調整 */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: white;
+            font-family: Arial, sans-serif;
+            
+            /* --- ここから追加 --- */
+            background-color: rgba(0, 0, 0, 0.7); /* 半透明の黒い背景 */
+            padding: 5px 10px; /* 文字の周りの余白 */
+            border-radius: 5px; /* 角を丸くする */
+            /* --- ここまで追加 --- */
+        }
+        @media screen and (max-width: 768px) {
+            .number-label {
+                font-size: 14px; /* スマホ時に文字サイズを縮小 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/6JUS3yFMWN8?autoplay=1" allow="autoplay"></iframe>
+            <div class="number-label">羽田空港</div>
+        </div>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/xWvGw4qvKsY?autoplay=1" allow="autoplay"></iframe>
+            <div class="number-label">武蔵村山市残堀</div>
+        </div>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/slOgQojt8w8?autoplay=1" allow="autoplay"></iframe>
+            <div class="number-label">上野原ＩＣ</div>
+        </div>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/i-5fynOR1G8?autoplay=1" allow="autoplay"></iframe>
+            <div class="number-label">山梨県甲府市</div>
+        </div>
+    </div>
+</body>
+</html>
